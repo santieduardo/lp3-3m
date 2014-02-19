@@ -1,0 +1,11 @@
+Consultorio Medico:
+
+--> Cadastro de Pacientes/Remedios.
+--> Agenda
+--> Consulta
+-----> Descrição
+-----> Medicamentos
+-----> Enquanto não finalizada mantem-se em aberto
+-----> Imprimir(Receituario)
+--> Historico
+-----> Consulta Finalizadas
