@@ -25,7 +25,7 @@ public class CRUD extends JFrame{
 	JMenuItem itemNovo, itemEditar, itemRemover, itemSair;
 	JList<String> lista;
 	JPanel painelBotoes;
-	JButton btnNovo, btnRemover, btnCancelar;
+	JButton btnNovo, btnRemover, btnSair;
 	DefaultListModel<String> acoeslista;
 	String nome, idade, aux;
 	
@@ -56,7 +56,7 @@ public class CRUD extends JFrame{
 		painelBotoes.setLayout(new FlowLayout());
 		painelBotoes.add(btnNovo);
 		painelBotoes.add(btnRemover);
-		painelBotoes.add(btnCancelar);
+		painelBotoes.add(btnSair);
 		
 		janela.add(painelBotoes, BorderLayout.SOUTH);
 				
@@ -96,7 +96,7 @@ public class CRUD extends JFrame{
 		lista 			= new JList<String>(acoeslista);
 		btnNovo 		= new JButton("Novo");
 		btnRemover 		= new JButton("Remover");
-		btnCancelar 	= new JButton("Cancelar");
+		btnSair 	= new JButton("Sair");
 		painelBotoes 	= new JPanel();
 		
 	}
@@ -125,7 +125,7 @@ public class CRUD extends JFrame{
 		
 		//ao clicar no botão 'cancelar' é encerrado o sistema
 		
-		btnCancelar.addActionListener(new ActionListener() {
+		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
@@ -145,6 +145,16 @@ public class CRUD extends JFrame{
 				acoeslista.addElement(aux);
 			}
 		});
+		
+		//ao clicar no item 'remover' do menu é removido
+		//o registro previamente selecionado no sistema
+		
+		itemRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				acoeslista.remove(lista.getSelectedIndex());
+			}
+		});
+		
 		
 		//ao clicar no item 'sair' do menu 'arquivo' o sistema é fechado
 		
