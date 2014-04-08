@@ -41,7 +41,7 @@ public class CRUD extends JFrame{
 		
 		acoesMenus(); //ActionListeners dos menus
 		
-		eventosMenus(); //setMnemonic(KeyEvent) dos menus
+		definirEventos(); //setMnemonic(KeyEvent) dos menus
 		
 		setItensMenuArquivo(); //seta todos os itens do menu arquivo
 		
@@ -54,12 +54,21 @@ public class CRUD extends JFrame{
 		acionarBotoes(); //funções dos botões do CRUD
 		
 		painelBotoes.setLayout(new FlowLayout());
+		setPainelBotoes();
+				
+		janela.add(painelBotoes, BorderLayout.SOUTH);
+		
+		setConfigFrame(); //configurações gerais do Frame		
+	}
+	
+	private void setPainelBotoes() {
 		painelBotoes.add(btnNovo);
 		painelBotoes.add(btnRemover);
 		painelBotoes.add(btnSair);
 		
-		janela.add(painelBotoes, BorderLayout.SOUTH);
-				
+	}
+
+	private void setConfigFrame() {
 		janela.setDefaultCloseOperation(janela.EXIT_ON_CLOSE);
 		janela.setVisible(true);
 		janela.setSize(280, 250);
@@ -67,7 +76,6 @@ public class CRUD extends JFrame{
 		
 	}
 
-	
 	private void setItensMenuBar() {
 		barra.add(menuArquivo);
 		barra.add(menuAjuda);
@@ -180,11 +188,18 @@ public class CRUD extends JFrame{
 		
 	}
 	
-	private void eventosMenus() {
+	private void definirEventos() {
 		menuArquivo.setMnemonic(KeyEvent.VK_A);
 		menuAjuda.setMnemonic(KeyEvent.VK_J);
 		
+		itemNovo.setMnemonic(KeyEvent.VK_N);
+		itemEditar.setMnemonic(KeyEvent.VK_E);
+		itemRemover.setMnemonic(KeyEvent.VK_R);
 		itemSair.setMnemonic(KeyEvent.VK_S);
+		
+		btnNovo.setMnemonic(KeyEvent.VK_N);
+		btnRemover.setMnemonic(KeyEvent.VK_R);
+		btnSair.setMnemonic(KeyEvent.VK_S);
 	}
 	
 }
