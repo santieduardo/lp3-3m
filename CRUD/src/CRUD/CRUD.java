@@ -96,7 +96,7 @@ public class CRUD extends JFrame{
 		lista 			= new JList<String>(acoeslista);
 		btnNovo 		= new JButton("Novo");
 		btnRemover 		= new JButton("Remover");
-		btnSair 	= new JButton("Sair");
+		btnSair 		= new JButton("Sair");
 		painelBotoes 	= new JPanel();
 		
 	}
@@ -145,6 +145,18 @@ public class CRUD extends JFrame{
 				acoeslista.addElement(aux);
 			}
 		});
+		
+		//ao clicar no item 'editar' no meu 'arquivo' é solicitada
+		//a alteração do nome e idade da pessoa previamente selecionada no CRUD
+		itemEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nome = JOptionPane.showInputDialog("Edite o nome: ", nome);
+				idade = JOptionPane.showInputDialog("Edite o nome: ", idade);
+				aux = nome + " " + idade;
+				acoeslista.setElementAt(aux, lista.getSelectedIndex());
+			}
+		});
+		
 		
 		//ao clicar no item 'remover' do menu é removido
 		//o registro previamente selecionado no sistema
