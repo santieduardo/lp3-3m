@@ -151,9 +151,11 @@ public class CRUD extends JFrame{
 		itemEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nome = JOptionPane.showInputDialog("Edite o nome: ", nome);
-				idade = JOptionPane.showInputDialog("Edite o nome: ", idade);
-				aux = nome + " " + idade;
-				acoeslista.setElementAt(aux, lista.getSelectedIndex());
+				 idade = JOptionPane.showInputDialog("Edite o nome: ", idade);
+				 aux = nome + " " + idade;
+				 
+				 //TODO BUG_01 - altera apenas o último registro do CRUD 
+				 acoeslista.setElementAt(aux, lista.getSelectedIndex());
 			}
 		});
 		
