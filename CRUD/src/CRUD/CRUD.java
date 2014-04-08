@@ -1,9 +1,11 @@
+package CRUD;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.util.zip.CheckedInputStream;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -25,50 +27,31 @@ public class CRUD extends JFrame{
 	JPanel painelBotoes;
 	JButton btnNovo, btnRemover, btnCancelar;
 	DefaultListModel<String> acoeslista;
+	String nome, idade, aux;
 	
 	public static void main(String[] args) {
 		new CRUD();
 		
 	}
 	
-	public CRUD(){		
-		janela = new JFrame("CRUD");		
-		barra = new JMenuBar();
-		menuArquivo = new JMenu("Arquivo");
-		menuAjuda = new JMenu("Ajuda");
-		itemNovo = new JMenuItem("Novo");
-		itemEditar = new JMenuItem("Editar");
-		itemRemover = new JMenuItem("Remover");
-		itemSair = new JMenuItem("Sair");
-		acoeslista = new DefaultListModel<>();
-		lista = new JList<String>(acoeslista);
-		btnNovo = new JButton("Novo");
-		btnRemover = new JButton("Remover");
-		btnCancelar = new JButton("Cancelar");
-		painelBotoes = new JPanel();
-		
+	public CRUD(){
+		instanciarComponentes(); //criação de todos os componentes do sistema
 		
 		janela.getContentPane().setLayout(new BorderLayout());
 		
+		acoesMenus(); //ActionListeners dos menus
 		
-		acoesMenus();
+		eventosMenus(); //setMnemonic(KeyEvent) dos menus
 		
-		eventosMenus();
+		setItensMenuArquivo(); //seta todos os itens do menu arquivo
 		
+		setItensMenuBar(); //todos os menus do CRUD
 		
-		menuArquivo.add(itemNovo);
-		menuArquivo.add(itemEditar);
-		menuArquivo.add(itemRemover);
-		menuArquivo.addSeparator();
-		menuArquivo.add(itemSair);
-		
-		barra.add(menuArquivo);
-		barra.add(menuAjuda);
 		janela.add(barra, BorderLayout.NORTH);
 		
 		janela.add(lista);
 		
-		acoesBotoes();
+		acionarBotoes(); //funções dos botões do CRUD
 		
 		painelBotoes.setLayout(new FlowLayout());
 		painelBotoes.add(btnNovo);
@@ -85,10 +68,45 @@ public class CRUD extends JFrame{
 	}
 
 	
-	private void acoesBotoes() {
+	private void setItensMenuBar() {
+		barra.add(menuArquivo);
+		barra.add(menuAjuda);
+		
+	}
+
+	private void setItensMenuArquivo() {
+		menuArquivo.add(itemNovo);
+		menuArquivo.add(itemEditar);
+		menuArquivo.add(itemRemover);
+		menuArquivo.addSeparator();
+		menuArquivo.add(itemSair);
+		
+	}
+
+	private void instanciarComponentes() {
+		janela 			= new JFrame("CRUD");		
+		barra 			= new JMenuBar();
+		menuArquivo 	= new JMenu("Arquivo");
+		menuAjuda 		= new JMenu("Ajuda");
+		itemNovo 		= new JMenuItem("Novo");
+		itemEditar 		= new JMenuItem("Editar");
+		itemRemover 	= new JMenuItem("Remover");
+		itemSair 		= new JMenuItem("Sair");
+		acoeslista 		= new DefaultListModel<>();
+		lista 			= new JList<String>(acoeslista);
+		btnNovo 		= new JButton("Novo");
+		btnRemover 		= new JButton("Remover");
+		btnCancelar 	= new JButton("Cancelar");
+		painelBotoes 	= new JPanel();
+		
+	}
+
+	private void acionarBotoes() {
+		//ao clicar no botão 'novo' do CRUD é solicitada 
+		//a inserção de nome e idade de pessoas para o sistema
+		
 		btnNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String nome, idade, aux;
 				nome = JOptionPane.showInputDialog("Digite o nome: ");
 				idade = JOptionPane.showInputDialog("Digite a idade: ");
 				aux = nome + " " + idade;
@@ -96,11 +114,16 @@ public class CRUD extends JFrame{
 			}
 		});
 		
+		//ao clicar no botão 'remover' do CRUD é removido
+		//o registro previamente selecionado no sistema
+		
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				acoeslista.remove(lista.getSelectedIndex());
 			}
 		});
+		
+		//ao clicar no botão 'cancelar' é encerrado o sistema
 		
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -111,6 +134,20 @@ public class CRUD extends JFrame{
 	}
 
 	private void acoesMenus() {
+		//ao clicar no item 'novo' do menu 'arquivo' é solicitada 
+		//a inserção de nome e idade de pessoas para o sistema
+		
+		itemNovo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				nome = JOptionPane.showInputDialog("Digite o nome: ");
+				idade = JOptionPane.showInputDialog("Digite a idade: ");
+				aux = nome + " " + idade;
+				acoeslista.addElement(aux);
+			}
+		});
+		
+		//ao clicar no item 'sair' do menu 'arquivo' o sistema é fechado
+		
 		itemSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
@@ -124,8 +161,6 @@ public class CRUD extends JFrame{
 		menuAjuda.setMnemonic(KeyEvent.VK_J);
 		
 		itemSair.setMnemonic(KeyEvent.VK_S);
-		
 	}
-	
 	
 }
