@@ -123,7 +123,7 @@ public class CRUD extends JFrame{
 				nome = JOptionPane.showInputDialog("Digite o nome: ");
 				idade = JOptionPane.showInputDialog("Digite a idade: ");
 				janela.setVisible(true);
-				aux = nome + " " + idade;
+				aux = nome + " - " + idade;
 				acoeslista.addElement(aux);
 			}
 		});
@@ -157,7 +157,7 @@ public class CRUD extends JFrame{
 				nome = JOptionPane.showInputDialog("Digite o nome: ");
 				idade = JOptionPane.showInputDialog("Digite a idade: ");
 				janela.setVisible(true);
-				aux = nome + " " + idade;
+				aux = nome + " - " + idade;
 				acoeslista.addElement(aux);
 			}
 		});
@@ -167,11 +167,11 @@ public class CRUD extends JFrame{
 		itemEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				janela.setVisible(false);
-				String[] pessoa = lista.getSelectedValue().split(" ");
+				String[] pessoa = lista.getSelectedValue().split(" - ");
 				
 				nome = JOptionPane.showInputDialog("Edite o nome: ", pessoa[0]);
 				idade = JOptionPane.showInputDialog("Edite o nome: ", pessoa[1]);
-				aux = nome + " " + idade;
+				aux = nome + " - " + idade;
 
 				acoeslista.setElementAt(aux, lista.getSelectedIndex());
 				janela.setVisible(true);
