@@ -5,8 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.security.KeyStore;
 import java.util.zip.CheckedInputStream;
 
+import javax.swing.Box;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,6 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 public class CRUD extends JFrame{
 
@@ -78,6 +81,7 @@ public class CRUD extends JFrame{
 
 	private void setItensMenuBar() {
 		barra.add(menuArquivo);
+		barra.add(Box.createHorizontalGlue());
 		barra.add(menuAjuda);
 		
 	}
@@ -158,12 +162,13 @@ public class CRUD extends JFrame{
 		//a alteração do nome e idade da pessoa previamente selecionada no CRUD
 		itemEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				nome = JOptionPane.showInputDialog("Edite o nome: ", nome);
-				 idade = JOptionPane.showInputDialog("Edite o nome: ", idade);
-				 aux = nome + " " + idade;
-				 
-				 //TODO BUG_01 - altera apenas o último registro do CRUD 
-				 acoeslista.setElementAt(aux, lista.getSelectedIndex());
+				String[] pessoa = lista.getSelectedValue().split(" ");
+				
+				nome = JOptionPane.showInputDialog("Edite o nome: ", pessoa[0]);
+				idade = JOptionPane.showInputDialog("Edite o nome: ", pessoa[1]);
+				aux = nome + " " + idade;
+
+				acoeslista.setElementAt(aux, lista.getSelectedIndex());
 			}
 		});
 		
@@ -196,6 +201,8 @@ public class CRUD extends JFrame{
 		itemEditar.setMnemonic(KeyEvent.VK_E);
 		itemRemover.setMnemonic(KeyEvent.VK_R);
 		itemSair.setMnemonic(KeyEvent.VK_S);
+		itemSair.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK));
+		
 		
 		btnNovo.setMnemonic(KeyEvent.VK_N);
 		btnRemover.setMnemonic(KeyEvent.VK_R);
