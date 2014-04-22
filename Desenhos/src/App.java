@@ -1,6 +1,5 @@
 import java.awt.BorderLayout;
 
-import javax.swing.Box;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -9,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 public class App extends JFrame{
-	
 	JFrame janela;
 	JToolBar barraTools;
 	JPanel painelTools, painelDesenho;
@@ -22,9 +20,6 @@ public class App extends JFrame{
 		janela.getContentPane().setLayout(new BorderLayout());
 		
 		adicionarIcones();
-		
-		
-		janela.add(painelDesenho, BorderLayout.CENTER);
 		
 		
 		setConfigFrame();
@@ -48,15 +43,11 @@ public class App extends JFrame{
 	
 	private void adicionarIcones(){
 		barraTools.add(btnCirculo);
-		barraTools.add(Box.createHorizontalStrut(5));
 		barraTools.add(btnQuadrado);
-		barraTools.add(Box.createHorizontalStrut(5));
 		barraTools.add(btnTexto);
-		barraTools.add(Box.createHorizontalStrut(5));
 		barraTools.add(btnLimpar);
-		barraTools.add(Box.createHorizontalStrut(5));
 		painelTools.add(barraTools);
-		janela.add(painelTools, BorderLayout.NORTH);
+		janela.add(painelTools);
 	}
 	
 	private void setConfigFrame(){
