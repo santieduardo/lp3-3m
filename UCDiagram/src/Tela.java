@@ -1,10 +1,13 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
 
 public class Tela {
@@ -15,7 +18,8 @@ public class Tela {
 	JButton btnIconeAbrir, btnIconeAtor, btnIconeNovo, btnIconeSalvar, btnIconeUseCase;
 	JList<String> listaProjeto;
 	DefaultListModel<String> acoesProjeto;
-	JPanel painelProjeto;
+	JPanel painelArvore, painelDesenho;
+	JSplitPane painelSplit;
 	
 	public Tela(){
 		instanciarComponentes();
@@ -49,7 +53,10 @@ public class Tela {
 		
 		listaProjeto = new JList<String>(acoesProjeto);
 		
-		painelProjeto = new JPanel();
+		painelArvore = new JPanel();
+		painelDesenho = new JPanel();
+		
+		painelSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, painelArvore, painelDesenho);
 	}
 	
 	private void iniciarBarraFerramentas(){
@@ -63,7 +70,11 @@ public class Tela {
 	}
 	
 	private void iniciarListaProjetos(){
-		janela.add(listaProjeto, BorderLayout.WEST);
+		painelArvore.add(listaProjeto);
+		
+		painelDesenho.setBackground(Color.BLUE);
+		painelSplit.setDividerLocation(250);
+		janela.add(painelSplit);
 	}
 	
 	private void setConfigFrame(){		
