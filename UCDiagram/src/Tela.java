@@ -1,5 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -28,7 +31,6 @@ public class Tela {
 		iniciarBarraFerramentas();
 		iniciarListaProjetos();
 		
-		
 		setConfigFrame();
 	}
 	
@@ -44,10 +46,24 @@ public class Tela {
 		iconeUseCase = new ImageIcon("imagens/useCase.gif");
 		
 		btnIconeAbrir = new JButton(iconeAbrir);
+		btnIconeAbrir.setName("btnInoceAbrir");
+		btnIconeAbrir.addActionListener(new tratadorBotoes());
+		
 		btnIconeAtor = new JButton(iconeAtor);
+		btnIconeAtor.setName("btnInoceAtor");
+		btnIconeAtor.addActionListener(new tratadorBotoes());
+		
 		btnIconeNovo = new JButton(iconeNovo);
+		btnIconeNovo.setName("btnInoceNovo");
+		btnIconeNovo.addActionListener(new tratadorBotoes());
+		
 		btnIconeSalvar = new JButton(iconeSalvar);
+		btnIconeSalvar.setName("btnInoceSalvar");
+		btnIconeSalvar.addActionListener(new tratadorBotoes());
+		
 		btnIconeUseCase = new JButton(iconeUseCase);
+		btnIconeUseCase.setName("btnInoceUseCase");
+		btnIconeUseCase.addActionListener(new tratadorBotoes());
 		
 		acoesProjeto = new DefaultListModel<>();
 		
@@ -72,7 +88,7 @@ public class Tela {
 	private void iniciarListaProjetos(){
 		painelArvore.add(listaProjeto);
 		
-		painelDesenho.setBackground(Color.BLUE);
+		//painelDesenho.setBackground(Color.BLUE);
 		painelSplit.setDividerLocation(250);
 		janela.add(painelSplit);
 	}
@@ -87,4 +103,20 @@ public class Tela {
 		new Tela();	
 	}
 
+	
+	
+	private class tratadorBotoes implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() instanceof JButton){
+				String nomeBotao = ((JButton) e.getSource()).getName();
+				
+				
+			}
+			
+		}
+		
+	}
+	
 }
