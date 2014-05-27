@@ -1,16 +1,22 @@
 package projetoDesenho;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 
@@ -29,6 +35,7 @@ public class DesenhoFrame {
 	JButton btnNovo, btnAbrir, btnSalvar, btnLimpar;
 	int x, y;
 	int x1, x2, y1, y2;
+	int presX, presY;
 	
 	
 	private void iniciarComponentes(){
@@ -88,6 +95,36 @@ public class DesenhoFrame {
 		barraFerramentas.add(btnLimpar);
 		janela.getContentPane().add(barraFerramentas, BorderLayout.NORTH);
 		
+		painelDesenho.addMouseListener(new MouseAdapter() {
+			@Override  
+            public void mousePressed(MouseEvent e) {  
+                presX = e.getX();  
+                presY = e.getY();  
+            } 
+		});
+		
+		painelDesenho.addMouseMotionListener(new MouseMotionListener() {
+			
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int x = e.getX();
+				int y = e.getY();
+				
+				
+				int dX = e.getX() - presX;
+                int dY = e.getY() - presY;
+                int newX = painelDesenho.getX() + dX;
+                int newY = painelDesenho.getY() + dY;
+                painelDesenho.setLocation(newX, newY);
+                
+			}
+		});
+		
 		painelDesenho.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -129,20 +166,24 @@ public class DesenhoFrame {
 				
 				if(jtbAtor.isSelected()){
 					Ator ator = new Ator(x, y);
+					Linha linha = new Linha(x + 10, x + 100, y + 10, y + 10);
 					painelDesenho.adicionarDesenho(ator);
+					ator.setTexto(JOptionPane.showInputDialog("Digite o ator"));
+					painelDesenho.adicionarDesenho(linha);
 					painelDesenho.repaint();
 				}
 				
 				if(jtbUseCase.isSelected()){
 					UseCase useCase = new UseCase(x, y);
 					painelDesenho.adicionarDesenho(useCase);
+					useCase.setTexto(JOptionPane.showInputDialog("Digite o Caso de Uso"));
 					painelDesenho.repaint();
 				}
-				
+								
 			}
 		});
 	}
-	
+		
 	public DesenhoFrame(){
 		iniciarComponentes();
 		
@@ -169,8 +210,5 @@ public class DesenhoFrame {
 		}
 		
 	}
-	
-	
-	
 	
 }

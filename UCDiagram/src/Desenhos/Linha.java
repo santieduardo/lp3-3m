@@ -19,5 +19,4 @@ public class Linha extends Desenho{
 		grafico.drawLine(x1, y1, x2, y2);
 	}
 	
-	
 }
